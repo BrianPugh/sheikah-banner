@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "sheikah-banner"
+version = "0.1.0"
+description = ""
+authors = ["Brian Pugh <bnp117@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sheikah_banner"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pillow = "^9.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
