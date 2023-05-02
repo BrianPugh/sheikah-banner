@@ -20,7 +20,6 @@ def main():
     args = parser.parse_args()
 
     font_path = "font/sheikah-complete.ttf"
-    font_size = 36
 
     if args.padding is None:
         args.padding = args.size
@@ -28,7 +27,7 @@ def main():
     if args.vertical:
         args.text = "\n".join(args.text)
 
-    font = ImageFont.truetype(font_path, font_size)
+    font = ImageFont.truetype(font_path, args.size)
 
     _, _, text_width, text_height = ImageDraw.Draw(Image.new("RGB", (0, 0))).textbbox(
         (0, 0), args.text, font=font
