@@ -17,6 +17,7 @@ def main():
     parser.add_argument("--size", type=int, default=36, help="Output font size")
     parser.add_argument("--padding", type=int, default=None)
     parser.add_argument("--output", "-o", type=Path, help="Output file to save to.")
+    parser.add_argument("--resize", type=float, help="Resize after applying 'mode'")
     args = parser.parse_args()
 
     font_path = "font/sheikah-complete.ttf"
@@ -41,7 +42,14 @@ def main():
     draw = ImageDraw.Draw(img)
     draw.text((args.padding, args.padding), args.text, font=font, fill="black")
 
+    new_size = tuple(int(x * args.resize) for x in img.size)
+
     img = img.convert(args.mode)
+
+    if args.mode == "1":
+        img = img.resize(new_size, Image.NEAREST)
+    else:
+        img = img.resize(new_size, Image.LANCZOS)
 
     if args.output:
         img.save(args.output)
